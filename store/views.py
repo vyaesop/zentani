@@ -113,7 +113,7 @@ def add_to_cart(request):
     else:
         Cart(user=user, product=product).save()
     
-    return redirect('store:cart')
+    return redirect('store:home')
 
 
 @login_required
