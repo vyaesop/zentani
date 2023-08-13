@@ -32,7 +32,26 @@ def detail(request, slug):
     }
     return render(request, 'store/detail.html', context)
 
+# def search_view(request):
+#     query = request.GET.get("q")
+#     products = Product.objects.filter(title__icontains=query, is_active=True)
+#     context = {
+#         'products': products,
+#         'query' : query,
+#     }
 
+#     return render(request, "store/search.html", context)
+
+def search_view(request):
+    query = request.GET.get("q")
+    products = Product.objects.filter(title__icontains="" if query is None else query, is_active=True)
+    
+    context = {
+        'products': products,
+        'query' : query,
+    }
+
+    return render(request, "store/search.html", context)
 def all_categories(request):
     categories = Category.objects.filter(is_active=True)
     return render(request, 'store/categories.html', {'categories':categories})
